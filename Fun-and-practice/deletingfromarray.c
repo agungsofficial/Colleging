@@ -2,8 +2,8 @@
 
 int main(int argc, char const *argv[])
 {
-	int erro=4, i;
-	int a[9];
+	int erro=4, i; 		//Erro is location (within an array) that we want to delete
+	int a[9];		//The array
 	
 
 	for (i = 0; i < 9; ++i)
@@ -23,13 +23,3 @@ int main(int argc, char const *argv[])
 
 	return 0;
 }
-7
-ya
-124j421 EzBugatti
-2000001 LienKing
-0800322 Artizi
-1520036 Yunifers
-322322322 Ice3
-4429222 Puppan
-7732221 EternalEnpi
-nim
