@@ -1,1 +1,1 @@
-This is a temporary directory, updates is imminent
+Fixed my Source codes for Sequential files practice. Enjoy :)
