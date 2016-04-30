@@ -1,15 +1,20 @@
-#include "header.h"
+#include "header.h" //The Header Included
+
+// ------MAIN FUNCTION----- //
 
 int main(int argc, char const *argv[])
 {
+
+	//I SOME VARIABLE DECLARATION
 	int i=0, j;
 	int pilihan;
 	char pilihan2[666];
 	mahasiswa alpro;
-	int stop=1;
+	int brake=1;
 
-
+	//II MAIN MENU LOOP
 	do {
+		//II,1 DRAWING THE TABLE
 		system("cls");
 		readfile();
 		int length= longestnam();
@@ -65,10 +70,10 @@ int main(int argc, char const *argv[])
 			printf("-");
 		}
 		printf("\n");
-
+		//II,2 THE OPTIONS LIST
 		printf("Masukan pilihan  anda:\n");
 		printf("\n");
-		printf("---------Pilihan--------\n");
+		printf("----------Pilihan---------\n");
 		printf("|");
 		for (i = 0; i < strlen(data[i].nama)-3; ++i)
 		{
@@ -99,60 +104,65 @@ int main(int argc, char const *argv[])
 			printf(" ");
 		}
 		printf("5. Keluar program    |\n");
-		printf("------------------------\n");
+		printf("--------------------------\n");
 		printf("\n");
 
+		//II,2 INPUT THE OPTION
 		scanf("%d", &pilihan);
-		if (pilihan==1)
+		if (pilihan==1)		//Option 1
 		{
 			printf("Masukan nim:\n");
 			scanf("%s", alpro.nim);
 			if (finddata(alpro.nim) == 1)
 			{
-				printf("Data Ditemukan\n");
+				printf("Data ditemukan.\n");
 			}
 			else
 			{
 				printf("Data tidak Ditemukan\n");
 			}
 		}
-		else if (pilihan==2)
+		else if (pilihan==2)		//Option 2
 		{
 			printf("Masukan nim\n");
 			scanf("%s", alpro.nim);
-			printf("Masukan nama\n");
+			printf("Masukan nama:\n");
 			scanf("%s", alpro.nama);
-			printf("Masukan kelas\n");
+			printf("Masukan kelas:\n");
 			scanf("%s", alpro.kelas);
 			insertdata(alpro);
 		}
-		else if (pilihan==3)
+		else if (pilihan==3)		//Option 3
 		{
-			printf("Masukan nim\n");
+			printf("Masukan nim:\n");
 			scanf("%s", alpro.nim);
 			updatedata(alpro.nim);
 		}
-		else if (pilihan==4)
+		else if (pilihan==4)		//Option 4
 		{
-			printf("Masukan nim\n");
+			printf("Masukan nim:\n");
 			scanf("%s", alpro.nim);
 			deletedata(alpro.nim);
 
 		}
-		else if (pilihan==5)
+		if (pilihan==5)		//Option 5
 		{
-			stop=0;
+			brake=0;
+		}
+		else		//repeat the loop?
+		{
+			printf("Apakah ingin keluar?\n");
+			printf("ya/tidak?\n");
+			scanf("%s", pilihan2);
+			
 		}
 
-		printf("Apakah ingin keluar?\n");
-		printf("ya/tidak?\n");
-		scanf("%s", pilihan2);
 		pilihan=0;
 
 
-	} while (strcmp(pilihan2, "ya")!=0 && stop!=0);
+	} while (strcmp(pilihan2, "ya")!=0 && brake==1);
 
-	system("cls");
+	system("cls");		//CLearing the system
 
 	return 0;
 }

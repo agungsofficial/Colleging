@@ -1,79 +1,80 @@
-#include "header.h"
+#include "header.h"//The Header Included
 
-int longestnam()
-{
-	int i;
-	int temp=strlen(data[0].nama);
-	for (i = 0+1; i < n; ++i)
+//I SEARCHING THE NUMBER OF LONGEST STRING
+	int longestnam()		
 	{
-		if (temp<strlen(data[i].nama))
+		int i;
+		int temp=strlen(data[0].nama);
+		for (i = 0+1; i < n; ++i)
 		{
-			temp=strlen(data[i].nama);
+			if (temp<strlen(data[i].nama))
+			{
+				temp=strlen(data[i].nama);
+			}
 		}
+		return temp;
 	}
-	return temp;
-}
-int longestnim()
-{
-	int i;
-	int temp=strlen(data[0].nim);
-	for (i = 0+1; i < n; ++i)
+	int longestnim()
 	{
-		if (temp<strlen(data[i].nim))
+		int i;
+		int temp=strlen(data[0].nim);
+		for (i = 0+1; i < n; ++i)
 		{
-			temp=strlen(data[i].nim);
+			if (temp<strlen(data[i].nim))
+			{
+				temp=strlen(data[i].nim);
+			}
 		}
+		return temp;
 	}
-	return temp;
-}
-int longestcla()
-{
-	int i;
-	int temp=strlen(data[0].nim);
-	for (i = 0+1; i < n; ++i)
+	int longestcla()
 	{
-		if (temp<strlen(data[i].kelas))
+		int i;
+		int temp=strlen(data[0].nim);
+		for (i = 0+1; i < n; ++i)
 		{
-			temp=strlen(data[i].kelas);
+			if (temp<strlen(data[i].kelas))
+			{
+				temp=strlen(data[i].kelas);
+			}
 		}
+		return temp;
 	}
-	return temp;
-}
 
-
-void readfile()
-{
-	n=0;
-	mahasiswa tmp;
-	FILE *fdata;
-	fdata= fopen("data/mahasiswa.dat", "r");
-
-	do
+//II OPENING AND SAVING THE DATA
+	void readfile()
 	{
-		fscanf(fdata, "%s %s %s", tmp.nim, tmp.nama, tmp.kelas );
-		if ((strcmp(tmp.nim, "##")!=0) && (strcmp(tmp.nama, "##")!=0) &&  (strcmp(tmp.kelas, "##")!=0)  )
+		n=0;
+		mahasiswa tmp;
+		FILE *fdata;
+		fdata= fopen("data/mahasiswa.dat", "r");
+
+		do
 		{
-			data[n]=tmp;
-			n++;
-		}
-	} while ((strcmp(tmp.nim, "##")!=0) && (strcmp(tmp.nama, "##")!=0) && (strcmp(tmp.kelas, "##")!=0) );
-	fclose(fdata);
-}
-
-void writefile()
-{
-	int i;
-	FILE *fdata;
-	fdata= fopen("data/mahasiswa.dat", "w");
-	for (i = 0; i < n; ++i)
-	{
-		fprintf(fdata, "%s %s %s\n", data[i].nim, data[i].nama, data[i].kelas );
+			fscanf(fdata, "%s %s %s", tmp.nim, tmp.nama, tmp.kelas );
+			if ((strcmp(tmp.nim, "##")!=0) && (strcmp(tmp.nama, "##")!=0) &&  (strcmp(tmp.kelas, "##")!=0)  )
+			{
+				data[n]=tmp;
+				n++;
+			}
+		} while ((strcmp(tmp.nim, "##")!=0) && (strcmp(tmp.nama, "##")!=0) && (strcmp(tmp.kelas, "##")!=0) );
+		fclose(fdata);
 	}
-	fprintf(fdata, "## ## ##\n");
-	fclose(fdata);
-}
 
+	void writefile()
+	{
+		int i;
+		FILE *fdata;
+		fdata= fopen("data/mahasiswa.dat", "w");
+		for (i = 0; i < n; ++i)
+		{
+			fprintf(fdata, "%s %s %s\n", data[i].nim, data[i].nama, data[i].kelas );
+		}
+		fprintf(fdata, "## ## ##\n");
+		fclose(fdata);
+	}
 
+//III IS THAT DATA EXIST?
 int finddata(char nim[15])
 {
 	int status =0;
@@ -102,6 +103,7 @@ int finddata(char nim[15])
 	return status;
 }
 
+//IV ADDING DATA
 void insertdata(mahasiswa masukan)
 {
 	int status=finddata(masukan.nim);
@@ -118,6 +120,7 @@ void insertdata(mahasiswa masukan)
 		}
 }
 
+//V DELETING DATA
 void deletedata(char nim[15])
 {
 	readfile();
@@ -131,6 +134,7 @@ void deletedata(char nim[15])
 		if (strcmp(data[i].nim, nim)==0)
 		{
 			status=1;
+			printf("Data milik %s dari kelas %s.\n", data[i].nama, data[i].kelas );
 			printf("Yakin menghapus data ini?\n ya/tidak? \n");
 			scanf("%s", hapus );
 			if (strcmp(hapus, "ya")==0)
@@ -153,7 +157,7 @@ void deletedata(char nim[15])
 	}
 
 }
-
+//VI CHANGE THE CLASS AND THE NAME
 void updatedata(char nim[15])
 {
 	readfile();
@@ -170,8 +174,10 @@ void updatedata(char nim[15])
 			printf("-----Data Awal-----\n");
 			printf("%s %s %s\n",data[i].nim, data[i].nama, data[i].kelas );
 			printf("-------------------\n");
-			scanf("%s ",nama);
-			scanf("%s \n",kelas);
+			printf("Masukan nama baru:\n");
+			scanf("%s",nama);
+			printf("Masukan kelas baru:\n");
+			scanf("%s",kelas);
 			strcpy(data[i].nama, nama);
 			strcpy(data[i].kelas, kelas);
 			writefile();
@@ -185,7 +191,7 @@ void updatedata(char nim[15])
 	}
 	if (status==0)
 	{
-		printf("Data Tidak ditemukan\n");
+		printf("Data Tidak ditemukan.\n");
 	}
 
 
