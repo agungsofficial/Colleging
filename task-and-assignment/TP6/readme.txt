@@ -1,3 +1,5 @@
+This is Assignment number 6 of my Algoritma & Pemrograman II class:
+
 (JADKOS15) Jadwal Kosong Bersama
 
 
